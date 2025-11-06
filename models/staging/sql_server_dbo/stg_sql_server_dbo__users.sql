@@ -1,6 +1,7 @@
 {{
   config(
     materialized='view'
+    alias='users'
   )
 }}
 
@@ -15,7 +16,7 @@ WITH cte AS (
 )
 
 SELECT  
-    a.user_id,
+    user_id,
     addressed_id,
     created_at_utc,
     updated_at_utc,
@@ -24,6 +25,4 @@ SELECT
     _fivetran_deleted,
     _fivetran_synced_utc
 
-FROM cte a
-LEFT JOIN total_orders b
-    ON a.user_id = b.user_id
+FROM cte

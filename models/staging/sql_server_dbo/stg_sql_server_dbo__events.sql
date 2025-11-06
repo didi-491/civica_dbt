@@ -1,6 +1,7 @@
 {{
   config(
     materialized='view'
+    alias='events'
   )
 }}
 

@@ -8,7 +8,7 @@ WITH cte AS (
     SELECT 
         *,
         discount as discount_dollar,
-        lower(replace(trim(replace(promo_id, '-', '_')), ' ', '_')) as promo_name
+        lower(replace(trim(replace(promo_id, '-', '_')), ' ', '_')) as promo_name,
         CONVERT_TIMEZONE('Europe/Madrid', _fivetran_synced)::TIMESTAMP_NTZ as _fivetran_synced_UTC
     FROM  {{ source('sql_server_dbo', 'promos') }}
 )

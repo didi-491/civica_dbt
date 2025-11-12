@@ -96,8 +96,9 @@ sources:
           - name: status
             tests:
               - not_null
-              - accepted_values:         
-                  values: ['delivered', 'preparing', 'shipped']
+              - accepted_values:
+                  arguments:
+                    values: ['delivered', 'preparing', 'shipped']
           - name: tracking_id
             tests:
               - not_null
@@ -158,8 +159,9 @@ sources:
           - name: status
             tests:
               - not_null
-              - accepted_values:         
-                  values: ['active', 'inactive']
+              - accepted_values:
+                  arguments:
+                    values: ['active', 'inactive']
           - name: _fivetran_deleted
           - name: _fivetran_synced
 

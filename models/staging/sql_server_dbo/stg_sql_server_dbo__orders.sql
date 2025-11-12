@@ -1,6 +1,6 @@
 {{
   config(
-    materialized='view'
+    materialized='view',
     alias='orders'
   )
 }}
@@ -9,8 +9,6 @@ WITH cte AS (
     SELECT 
 
         *,
-        order_total as order_total_dollar,
-        order_cost as order_cost_dollar,
         shipping_cost as shipping_cost_dollar,
         md5(lower(replace(trim(replace(status, '-', '_')), ' ', '_'))) as status_id,
         md5(lower(replace(trim(replace(shipping_service, '-', '_')), ' ', '_'))) as shipping_service_id,
@@ -26,12 +24,11 @@ WITH cte AS (
 SELECT 
     order_id,
     user_id,
-    addressed_id,
+    address_id,
     created_at_utc,
     estimated_delivery_at_utc,
     delivered_at_utc,
     shipping_service_id,
-    tracking_id,
     order_total_dollar,
     order_cost_dollar,
     shipping_cost_dollar,       

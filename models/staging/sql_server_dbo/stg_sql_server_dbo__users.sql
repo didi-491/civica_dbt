@@ -1,6 +1,6 @@
 {{
   config(
-    materialized='view'
+    materialized='view',
     alias='users'
   )
 }}
@@ -8,8 +8,8 @@
 WITH cte AS (
     SELECT 
         *,
-        CONVERT_TIMEZONE('Europe/Madrid', updated_at)::TIMESTAMP_NTZ as updated_at_utc
-        CONVERT_TIMEZONE('Europe/Madrid', created_at)::TIMESTAMP_NTZ as created_at_utc
+        CONVERT_TIMEZONE('Europe/Madrid', updated_at)::TIMESTAMP_NTZ as updated_at_utc,
+        CONVERT_TIMEZONE('Europe/Madrid', created_at)::TIMESTAMP_NTZ as created_at_utc,
         CONVERT_TIMEZONE('Europe/Madrid', _fivetran_synced)::TIMESTAMP_NTZ as _fivetran_synced_utc
         
     FROM  {{ source('sql_server_dbo', 'users') }}
